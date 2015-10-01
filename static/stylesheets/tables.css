@@ -1,0 +1,19 @@
+
+#progList td {
+  padding: 30px;
+}
+
+#progList img:nth-child(odd) {
+   height: auto;
+   width: 200px;
+}
+
+.par table {
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.par td {
+  vertical-align: top;
+  padding: 15px;
+}

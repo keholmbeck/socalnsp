@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+
+{% block content %}
+    
+    <!--
+    <h3> Programs </h3>
+    -->
+    <div class="par">
+        <table id="progList">
+            <tr>
+                <td> <a href="{{ 'programs/alumni' }}">    <img src="{{ url_for('static', filename='images/alumni.png') }}"> </a> </td>
+                <td> <a href="{{ 'programs/avalanche' }}"> <img src="{{ url_for('static', filename='images/avalanche.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/awards' }}">    <img src="{{ url_for('static', filename='images/awards.png') }}"> </a></td>
+            <tr>
+            <tr>
+                <td> <a href="{{ 'programs/certified' }}"> <img src="{{ url_for('static', filename='images/certified.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/instructor_development' }}"> <img src="{{ url_for('static', filename='images/id.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/OEC' }}"> <img src="{{ url_for('static', filename='images/OEC.png') }}"> </a></td>
+            </tr>
+            <tr>
+                <td> <a href="{{ 'programs/MTR' }}"> <img src="{{ url_for('static', filename='images/MTR.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/SAR' }}"> <img src="{{ url_for('static', filename='images/SAR.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/senior' }}"> <img src="{{ url_for('static', filename='images/senior.png') }}"> </a></td>
+            </tr>
+            <tr>
+                <td> <a href="{{ 'programs/ski_and_toboggan' }}"> <img src="{{ url_for('static', filename='images/ski_and_toboggan.png') }}"> </a></td>
+                <td> <a href="{{ 'programs/snowboard' }}"> <img src="{{ url_for('static', filename='images/snowboard.png') }}"> </a></td>
+            </tr>
+        </table>
+    </div>
+    
+{% endblock %}

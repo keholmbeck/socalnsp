@@ -1,0 +1,221 @@
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,500,700);
+
+@import url(menubar.css);
+@import url(banner.css);
+@import url(tables.css);
+@import url(popup.css);
+@import url(sticky_footer.css);
+@import url(mobile_styles.css);
+
+
+/* CHROME
+
+    mint: rgb(204, 255, 204)
+    teal: rgb(77, 219, 184)
+    
+    pale yellow: rgb(255, 255, 204)
+    grayish yellow: rgb(230, 230, 184)
+    
+    pale cool blue: rgb(204, 230, 255)
+    light green teal: rgb(153, 235, 214)
+
+ SAFARI, FIREFOX
+
+   minty: rgb(163, 255, 224)
+   
+*/
+
+.background_image {
+  clear: both;
+  position: fixed;
+  display: block;
+  z-index: -1000;
+
+  padding: 0;
+  margin: 0;
+  
+  height: 100%;
+  width: 100%;
+  
+  /* The new syntax needed by standard-compliant browsers (Opera 12.1,
+       IE 10, Firefox 16, Chrome 26, Safari 6.1), without prefix */  
+  /*background: #FFF;*/
+  
+  /*
+  background-image: 
+   -webkit-radial-gradient(50% 10%, circle,     rgb(184, 219, 255), rgba(184, 219, 255, 0.0) ),
+   -webkit-radial-gradient(80% 50%, circle,     rgb(163, 255, 224), rgba(163, 255, 224, 0.0) ),
+   -webkit-radial-gradient(20% 30%, 40em 40em,  rgb(204, 204, 122), rgba(204, 204, 122, 0.0) ),
+   -webkit-radial-gradient(10% 10%, circle,     rgb(204, 255, 204), rgba(204, 255, 204, 0.0) );
+    */
+    
+  background-image:
+    radial-gradient(ellipse farthest-corner at 0% 100%, 
+                    rgb(184, 219, 255) 30%,
+                    rgb(163, 255, 224) 80%, 
+                    rgb(204, 255, 204) 100% );
+    
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body
+{
+  padding: 0px;
+  margin: 0px;
+  padding: 0px;
+  
+  font-family: Raleway, Arial;
+  font-size: 15px;
+  line-height: 1.5;
+
+  color:#444;   /* #777: gray text color */
+  min-width: 800px;
+  height: 100%;
+  width: 100%;
+  width: auto;
+
+  background-color: white; /* #cccccc --> gray */
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.par ul {
+  /*list-style-type: none;*/
+    padding: 0 0 0 0px;
+    padding-left: 20px;
+    /*margin: 30px 100px 0 0;*/
+}
+
+.par ol li
+{
+    padding-top: 20px;
+}
+
+.par ul li {
+  padding: 10px 0 0 0px;
+}
+
+.par li h4 {
+  margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color:#222;
+  margin:20px 0 20px 0px;
+}
+
+/*
+p, ul, ol, table, pre, dl {
+   margin:0 20px 20px;
+}
+*/
+
+.im_right, .im_left
+{
+  clear: both;
+  /* height: 350px; */
+  margin-top: 50px;
+  float: right;
+  padding: 20px;
+}
+
+.im_right
+{
+  float: right;
+}
+
+.im_left
+{
+  float: left;
+}
+
+
+.box_container {
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+}
+.box_title {
+    text-align: center;
+}
+
+.par, .superpar {
+  text-align: justify;
+  padding: 15px;
+  /*background: rgba(255, 255, 255, 0.3);*/
+  border-radius: 10px;
+  display: block;
+  /*min-width: inherit;*/
+  
+  overflow: auto;
+}
+
+.par {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.flash {
+    font-size: 9px;
+    display: inline;
+}
+#contactForm {
+    float: left;
+    text-align:right;
+}
+#contactForm input {
+    margin-bottom: 10px;
+}
+
+h1, h2, h3 {
+  line-height:1.1;
+}
+
+h1 {
+  font-size:28px;
+}
+
+h2 {
+  color:#393939;
+}
+
+h3, h4, h5, h6 {
+  color:#494949;
+}
+
+a {
+  color: #008080;
+  text-decoration: none;
+}
+
+a small {
+  font-size:11px;
+  color:#777;
+  margin-top:-0.6em;
+  display:block;
+}
+
+img {
+  max-width:100%;
+}
+
+strong {
+  color:#222;
+  font-weight:700;
+}
+
+section {
+  float:left;
+  padding-left: 300px;
+  padding-bottom: 50px;
+  padding-right: 25px;
+  /* width: 800px; */
+}
+
+small {
+  font-size:11px;
+}

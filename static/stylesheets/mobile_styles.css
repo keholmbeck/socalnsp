@@ -1,0 +1,154 @@
+
+html, body {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 800px)
+{
+    html body
+    {
+        width: 100%;
+        height: 100%;
+
+        min-width: 290px;
+    }
+
+    /* have to add "body" to make more specific */
+    body section
+    {
+        /*background-color: white;*/
+        z-index: -100;
+        
+        font-size: small;
+        width: 90%;
+        clear: both;
+        display: block;
+
+        padding: 0;
+        margin: 0;
+
+        padding-left: 20px;
+        padding-right: 0px;
+        padding-top: 120px;
+    }
+
+    .banner img
+    {
+        display: none;
+    }
+    
+    .banner #pageTitle
+    {
+        z-index: 0;
+        
+        opacity: 1.0;
+        display: block;
+        /*background: rgba(105, 105, 105, 1.0);*/
+    }
+
+    .superpar > .par
+    {
+        text-align: left;
+    }
+
+    section iframe{ width: 80% }
+    
+    .sidebar
+    {
+        z-index: 100;
+        background: rgba(105, 105, 105, 1.0);
+
+        clear: both;
+        display: inline;
+        overflow: hidden;
+
+        height: 90px;
+        width: auto;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .menubar
+    {
+        z-index: 100;
+        background: rgba(100,100,100, 1.0);
+        clear: both;
+        width: 100%;
+        text-align: right;
+    }
+
+    .menubar ul {
+        height: 100%;
+    }
+    
+    .menubar li
+    {
+        vertical-align: middle;
+    }
+    
+    #menu {
+        margin-top: 50px;
+        clear: both;
+        /* display: inline-block; */
+        display: block;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        
+        padding-bottom: 0px;
+        border-top: 1px solid white;
+    }
+
+    #menuicon {
+        clear: both;
+        width: 100%;
+
+        display: block;
+        float: right;
+        top: 50px;
+        right: 0;
+        padding-right: 10px;
+        position: absolute;
+    }
+    
+    #menuicon a { color: white; }
+
+    #menutitle {
+        padding-bottom: 0;
+        padding-top: 20px;
+    }
+
+    #menutitle h1 {
+        font-size: 17px;
+    }
+
+    #menutitle img {
+        height: 50px;
+        width: auto;
+    }
+
+    .sidefooter 
+    {
+        display: none;
+    }
+    
+    #memberPatrols td
+    {
+        display: block;
+    }
+    
+    #progList td
+    {
+        text-align: center;
+        vertical-align: middle;
+        display: block;
+    }
+    #progList tr
+    {
+        text-align: center;
+        vertical-align: middle;
+        display: block;
+    }
+} /* end @media max-width */
+

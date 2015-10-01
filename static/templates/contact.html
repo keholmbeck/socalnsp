@@ -1,0 +1,75 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2>Contact</h2>
+ 
+ <div class="par">
+{% if success %}
+    <p>Thank you for your message. We'll get back to you shortly.</p>
+
+{% else %}
+    <form id="contactForm" action="{{ url_for('contact') }}" method=post>
+        {{ form.hidden_tag() }}
+
+        {{ form.name.label }}
+        {{ form.name }}
+        
+        {% for message in form.name.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+     
+        <br>
+
+        {{ form.email.label }}
+        {{ form.email }}
+        
+        {% for message in form.email.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+ 
+        <br>
+
+        {{ form.subject.label }}
+        {{ form.subject }}
+     
+        {% for message in form.subject.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <br>
+
+        {{ form.message.label }}
+        {{ form.message }}
+ 
+        {% for message in form.message.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <br>
+
+        To:
+        <select name="emailSelect">
+          {% for ii in range( emails|length ) %}
+              <option value="{{ii}}" name="{{ emails[ii][0] }}"
+              {% if ii == nth_selected %}
+                selected
+              {% endif %}
+              > {{ emails[ii][0] }} </option>
+          {% endfor %}
+        </select>
+        <br>
+
+        <!--
+        <div class="g-recaptcha" data-sitekey="6Ler0g0TAAAAAK0AZ35ZffwqTyYW8e3GnNe0e0AV"></div>
+        -->
+        {{ form.captcha.label }}
+        {{ form.captcha }}
+ 
+        {% for message in form.captcha.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <br>
+        
+        {{ form.submit }}
+    </form>
+{% endif %}
+</div>
+{% endblock %}

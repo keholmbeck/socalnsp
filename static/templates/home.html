@@ -1,0 +1,52 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <div class="par">
+    
+    <div class="box_container">
+        <a href="{{ '/news' }}">
+            <div class="box_title">
+                <h3> News </h3>
+            </div>
+        </a>
+    </div>
+  
+    <a href="{{ '/join' }}">
+        <div class="box_container">
+            <div class="box_title">
+                <h3> Join </h3>
+            </div>
+        </div>
+    </a>
+    
+    </div>
+    
+    <h3> About </h3>
+    <div class="par">
+        As the leading authority of on-mountain safety, the NSP is dedicated to serving 
+        the public and outdoor recreation industry by providing education and accreditation 
+        to emergency care and safety service providers. The organization is made up of more 
+        than 26,000 members serving over 600 patrols, including alpine, Nordic, and auxiliary 
+        patrollers. Our members work on behalf of local ski and snowboard areas to improve 
+        the overall experience for outdoor recreationalists.
+        
+        <br><br>
+        
+        The Southern California Region is comprised of about 500 registered National Ski 
+        Patrol members from <a href="{{ '/MemberPatrols' }}">eleven hills</a> 
+        in the Southern California area.
+        
+        <br><br>
+        
+        There is one common thread that keeps all of us patrollers together, a vision to 
+        provide educational programs and services to those who provide safety, outdoor 
+        emergency care (OEC), and transportation services to others in their time of needs. 
+        And we do this with pride.
+    </div>
+
+    <h3> Authors and Contributors </h3>
+    <div class="par">        
+        Developed by <a href="https://github.com/socalnspweb" class="user-mention">Kristin Holmbeck</a>.
+    </div>
+
+{% endblock %}
