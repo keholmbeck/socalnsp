@@ -169,4 +169,4 @@ def snowboard():
 
 
 if __name__ == '__main__':
-    app.run(debug=debugStatus)
+    app.run(debug=False)
