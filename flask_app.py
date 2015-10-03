@@ -9,12 +9,15 @@ from flask.ext.mail import Message, Mail
 import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
-#from app import app
-app = Flask(__name__,template_folder='static/templates',static_folder='static')
+from app import *
 
 #---------- MAIL STUFF ------------ #
 app.config.from_object(__name__)
 mail = Mail(app)
+
+import sys
+sys.path.append('../PA_repo/')
+from app_config import *
 
 
 mail.init_app(app)
