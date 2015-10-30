@@ -9,13 +9,15 @@ from flask.ext.mail import Message, Mail
 import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
-#from app import app
-app = Flask(__name__,template_folder='static/templates',static_folder='static')
+from app import *
 
 #---------- MAIL STUFF ------------ #
 app.config.from_object(__name__)
 mail = Mail(app)
 
+import sys
+sys.path.append('../PA_repo/')
+from app_config import *
 
 mail.init_app(app)
 
@@ -43,12 +45,9 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
                 ])
 # -------------------------------- #
 
-debugStatus = "false"
-import os
-if os.name == 'nt':
-    debugStatus = "true"
 
-@app.route('/')
+
+@app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
     
@@ -56,6 +55,7 @@ def home():
 def about():
     return render_template('about.html', pageTitle="About")
 
+@app.route('/')
 @app.route('/news')
 def news():
     d = feedparser.parse('http://socalnsp.blogspot.com/feeds/posts/default?alt=rss')
@@ -169,4 +169,4 @@ def snowboard():
 
 
 if __name__ == '__main__':
-    app.run(debug=debugStatus)
+    app.run(debug=False)

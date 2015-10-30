@@ -58,16 +58,12 @@
         <br>
 
         <!--
-        <div class="g-recaptcha" data-sitekey="6Ler0g0TAAAAAK0AZ35ZffwqTyYW8e3GnNe0e0AV"></div>
-        -->
-        {{ form.captcha.label }}
-        {{ form.captcha }}
- 
-        {% for message in form.captcha.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
+        <div class="g-recaptcha" style="height:50px" data-sitekey="6Ler0g0TAAAAAK0AZ35ZffwqTyYW8e3GnNe0e0AV"></div>
+         -->
         <br>
-        
+        {{ form.recaptcha }}
+
+        <br>
         {{ form.submit }}
     </form>
 {% endif %}
