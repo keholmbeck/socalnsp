@@ -1,6 +1,8 @@
 {% extends "header.html" %}
 
 {% block content %}
+
+    <!--
     <div class="par">
     
     <div class="box_container">
@@ -20,33 +22,29 @@
     </a>
     
     </div>
+    -->
     
-    <h3> About </h3>
+    <h3> 2015 - 2016 Sponsors </h3>
     <div class="par">
-        As the leading authority of on-mountain safety, the NSP is dedicated to serving 
-        the public and outdoor recreation industry by providing education and accreditation 
-        to emergency care and safety service providers. The organization is made up of more 
-        than 26,000 members serving over 600 patrols, including alpine, Nordic, and auxiliary 
-        patrollers. Our members work on behalf of local ski and snowboard areas to improve 
-        the overall experience for outdoor recreationalists.
-        
+        Thank you to all who support the Southern California Region of the 
+        National Ski Patrol! Here are some featured sponsors for this season:
         <br><br>
         
-        The Southern California Region is comprised of about 500 registered National Ski 
-        Patrol members from <a href="{{ '/MemberPatrols' }}">eleven hills</a> 
-        in the Southern California area.
+        <a href="http://www.marriott.com/hotels/travel/laxbh-residence-inn-long-beach/">
+        <img height="100px" 
+            src="{{ url_for('static', filename='temp_images/sponsors/residence_inn_LB.png') }}">
+        </img>
+        </a>
         
+        <a href="http://www.bombethospitalitygroup.com/">
+        <img
+            src="{{ url_for('static', filename='temp_images/sponsors/BHG.png') }}">
+        </img>            
+        </a>
         <br><br>
         
-        There is one common thread that keeps all of us patrollers together, a vision to 
-        provide educational programs and services to those who provide safety, outdoor 
-        emergency care (OEC), and transportation services to others in their time of needs. 
-        And we do this with pride.
-    </div>
+        <br><br>
 
-    <h3> Authors and Contributors </h3>
-    <div class="par">        
-        Developed by <a href="https://github.com/socalnspweb" class="user-mention">Kristin Holmbeck</a>.
     </div>
 
 {% endblock %}

@@ -47,6 +47,7 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
 
 
 
+@app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
@@ -55,7 +56,6 @@ def home():
 def about():
     return render_template('about.html', pageTitle="About")
 
-@app.route('/')
 @app.route('/news')
 def news():
     d = feedparser.parse('http://socalnsp.blogspot.com/feeds/posts/default?alt=rss')
