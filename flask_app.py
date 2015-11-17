@@ -17,7 +17,7 @@ mail = Mail(app)
 
 import sys
 sys.path.append('../PA_repo/')
-from app_config import *
+#from app_config import *
 
 mail.init_app(app)
 
