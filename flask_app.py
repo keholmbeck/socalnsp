@@ -91,10 +91,10 @@ def contact():
     global emails
     form = ContactForm(csrf_enabled=False)
     nSelected = 1;
-    #return "hi"
     
-    '''
     if request.method == 'POST':
+        return "Posted"
+        
         if form.validate() == False:
             flash('All fields are required.')
             return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
@@ -113,8 +113,8 @@ def contact():
 
             return render_template('contact.html', success=True)
      
-    #elif request.method == 'GET':'''
-    return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+    elif request.method == 'GET':
+        return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
 
 @app.route('/join')
 def join():
