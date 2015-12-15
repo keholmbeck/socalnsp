@@ -93,6 +93,8 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return "hi"
+    
+'''
     global emails
     form = ContactForm(csrf_enabled=False)
     nSelected = 1;
@@ -118,6 +120,7 @@ def contact():
      
     #elif request.method == 'GET':
     return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+'''
 
 @app.route('/join')
 def join():
