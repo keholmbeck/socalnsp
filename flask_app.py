@@ -16,14 +16,14 @@ import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
 from app import *
-
+'''
 #---------- MAIL STUFF ------------ #
 app.config.from_object(__name__)
 mail = Mail(app)
 
 import sys
 sys.path.append('../PA_repo/')
-from app_config import *
+#from app_config import *
 
 mail.init_app(app)
 
@@ -50,7 +50,7 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
                 ("Snowboarding",            "snowboarding@socalnsp.org")
                 ])
 # -------------------------------- #
-
+'''
 
 
 @app.route('/')
@@ -91,7 +91,7 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return "hi"
-
+p
 @app.route('/join')
 def join():
     return render_template('join.html', pageTitle="Join NSP")
