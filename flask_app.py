@@ -24,10 +24,10 @@ mail = Mail(app)
 import sys
 sys.path.append('../PA_repo/')
 #from app_config import *
-'''
 
 mail.init_app(app)
 
+'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
