@@ -27,7 +27,7 @@ sys.path.append('../PA_repo/')
 
 mail.init_app(app)
 
-'''
+#'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
@@ -36,7 +36,7 @@ class ContactForm(Form):
     submit  = SubmitField("Send")
     captcha = TextField("Type the website URL to verify you are not a robot", [validators.Required(), validators.EqualTo("socalnsp.org", message="Wrong")])
     recaptcha = RecaptchaField()
-'''
+#'''
 
 emails = list([ ("General Information",     "admin@socalnsp.org"), 
                 ("JOIN Ski Patrol",         "join@socalnsp.org"),
