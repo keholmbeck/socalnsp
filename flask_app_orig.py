@@ -92,7 +92,7 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return "hi"
-
+p
 @app.route('/join')
 def join():
     return render_template('join.html', pageTitle="Join NSP")
