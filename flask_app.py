@@ -90,9 +90,8 @@ def news():
 def contact():
     global emails
     form = ContactForm(csrf_enabled=False)
-    
     nSelected = 1;
-    return "hi"
+    #return "hi"
     
     if request.method == 'POST':
         if form.validate() == False:
