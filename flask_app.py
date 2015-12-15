@@ -1,3 +1,9 @@
+#
+# git add --all
+# git commit -m"Commit message"
+# git push origin master
+#
+
 from flask import Flask, render_template, Blueprint
 from flask import request, redirect, flash
 from flask.ext.wtf import Form, RecaptchaField
