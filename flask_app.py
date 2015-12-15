@@ -27,7 +27,6 @@ sys.path.append('../PA_repo/')
 
 mail.init_app(app)
 
-#'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
@@ -36,7 +35,6 @@ class ContactForm(Form):
     submit  = SubmitField("Send")
     captcha = TextField("Type the website URL to verify you are not a robot", [validators.Required(), validators.EqualTo("socalnsp.org", message="Wrong")])
     recaptcha = RecaptchaField()
-#'''
 
 emails = list([ ("General Information",     "admin@socalnsp.org"), 
                 ("JOIN Ski Patrol",         "join@socalnsp.org"),
@@ -90,12 +88,11 @@ def news():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return "hi"
-    
-'''
     global emails
     form = ContactForm(csrf_enabled=False)
+    
     nSelected = 1;
+    return "hi"
     
     if request.method == 'POST':
         if form.validate() == False:
@@ -118,7 +115,6 @@ def contact():
      
     #elif request.method == 'GET':
     return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
-'''
 
 @app.route('/join')
 def join():
