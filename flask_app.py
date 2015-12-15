@@ -36,6 +36,7 @@ class ContactForm(Form):
     submit  = SubmitField("Send")
     captcha = TextField("Type the website URL to verify you are not a robot", [validators.Required(), validators.EqualTo("socalnsp.org", message="Wrong")])
     recaptcha = RecaptchaField()
+'''
 
 emails = list([ ("General Information",     "admin@socalnsp.org"), 
                 ("JOIN Ski Patrol",         "join@socalnsp.org"),
@@ -51,7 +52,6 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
                 ("Snowboarding",            "snowboarding@socalnsp.org")
                 ])
 # -------------------------------- #
-'''
 
 @app.route('/')
 @app.route('/home')
