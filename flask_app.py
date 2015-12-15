@@ -27,7 +27,6 @@ sys.path.append('../PA_repo/')
 
 mail.init_app(app)
 
-'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
@@ -51,7 +50,6 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
                 ("Snowboarding",            "snowboarding@socalnsp.org")
                 ])
 # -------------------------------- #
-'''
 
 
 @app.route('/')
@@ -92,7 +90,7 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return "hi"
-
+p
 @app.route('/join')
 def join():
     return render_template('join.html', pageTitle="Join NSP")
