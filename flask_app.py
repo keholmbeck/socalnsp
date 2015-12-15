@@ -90,31 +90,7 @@ def news():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    global emails
-    form = ContactForm(csrf_enabled=False)
-    nSelected = 1;
-    
-    if request.method == 'POST':
-        if form.validate() == False:
-            flash('All fields are required.')
-            return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
-        else:
-            selected  = request.form[ "emailSelect" ]
-            selected  = int( selected )
-            recipient = emails[selected][1]
-            
-            msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
-            msg.body = """
-            (Email sent through socalnsp.org) \n 
-            From: %s (%s) \n\n 
-            %s
-            """ % (form.name.data, form.email.data, form.message.data)
-            mail.send(msg)
-
-            return render_template('contact.html', success=True)
-     
-    #elif request.method == 'GET':
-    return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+    return "hi"
 
 @app.route('/join')
 def join():
