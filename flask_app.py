@@ -23,10 +23,11 @@ mail = Mail(app)
 
 import sys
 sys.path.append('../PA_repo/')
-#from app_config import *
+from app_config import *
 
 mail.init_app(app)
 
+'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
@@ -35,6 +36,7 @@ class ContactForm(Form):
     submit  = SubmitField("Send")
     captcha = TextField("Type the website URL to verify you are not a robot", [validators.Required(), validators.EqualTo("socalnsp.org", message="Wrong")])
     recaptcha = RecaptchaField()
+'''
 
 emails = list([ ("General Information",     "admin@socalnsp.org"), 
                 ("JOIN Ski Patrol",         "join@socalnsp.org"),
@@ -50,6 +52,7 @@ emails = list([ ("General Information",     "admin@socalnsp.org"),
                 ("Snowboarding",            "snowboarding@socalnsp.org")
                 ])
 # -------------------------------- #
+
 
 
 @app.route('/')
@@ -90,7 +93,32 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return "hi"
-p
+    global emails
+    form = ContactForm(csrf_enabled=False)
+    nSelected = 1;
+    
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
+        else:
+            selected  = request.form[ "emailSelect" ]
+            selected  = int( selected )
+            recipient = emails[selected][1]
+            
+            msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
+            msg.body = """
+            (Email sent through socalnsp.org) \n 
+            From: %s (%s) \n\n 
+            %s
+            """ % (form.name.data, form.email.data, form.message.data)
+            mail.send(msg)
+
+            return render_template('contact.html', success=True)
+     
+    #elif request.method == 'GET':
+    return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+
 @app.route('/join')
 def join():
     return render_template('join.html', pageTitle="Join NSP")
