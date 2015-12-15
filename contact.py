@@ -8,7 +8,7 @@ import cgitb; cgitb.enable()  # for troubleshooting
 
 app = Flask(__name__,template_folder='static/templates',static_folder='static')
  
-app.secret_key = 'development key'
+#app.secret_key = 'development key'
 app.config.from_object(__name__)
 mail = Mail(app)
 
@@ -24,8 +24,6 @@ app.config.update(dict(
 ))
 
 mail.init_app(app)
-
-app.secret_key = 'development key'
 
 class ContactForm(Form):
   name = TextField("Name")

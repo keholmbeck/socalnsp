@@ -23,7 +23,7 @@ mail = Mail(app)
 
 import sys
 sys.path.append('../PA_repo/')
-#from app_config import *
+from app_config import *
 
 mail.init_app(app)
 
@@ -91,7 +91,7 @@ def news():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     global emails
-    form = ContactForm()
+    form = ContactForm(csrf_enabled=False)
     nSelected = 1;
     
     if request.method == 'POST':
@@ -113,8 +113,8 @@ def contact():
 
             return render_template('contact.html', success=True)
      
-    elif request.method == 'GET':
-        return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+    #elif request.method == 'GET':
+    return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
 
 @app.route('/join')
 def join():
@@ -175,4 +175,4 @@ def snowboard():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
