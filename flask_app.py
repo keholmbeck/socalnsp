@@ -93,6 +93,7 @@ def contact():
     nSelected = 1;
     #return "hi"
     
+    '''
     if request.method == 'POST':
         if form.validate() == False:
             flash('All fields are required.')
@@ -112,7 +113,7 @@ def contact():
 
             return render_template('contact.html', success=True)
      
-    #elif request.method == 'GET':
+    #elif request.method == 'GET':'''
     return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
 
 @app.route('/join')
