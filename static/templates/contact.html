@@ -8,6 +8,10 @@
     <p>Thank you for your message. We'll get back to you shortly.</p>
 
 {% else %}
+    We apologize for any problems; this page is undergoing maintenance. 
+    Please email us at join@socalnsp.org if you would like to join!
+    <br>
+    
     <form id="contactForm" action="{{ url_for('contact') }}" method=post>
         {{ form.hidden_tag() }}
 
