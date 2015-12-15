@@ -16,7 +16,7 @@ import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
 from app import *
-'''
+
 #---------- MAIL STUFF ------------ #
 app.config.from_object(__name__)
 mail = Mail(app)
@@ -27,6 +27,7 @@ sys.path.append('../PA_repo/')
 
 mail.init_app(app)
 
+'''
 class ContactForm(Form):
     name    = TextField("Name",         [validators.Required("Please enter your name.")])
     email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
