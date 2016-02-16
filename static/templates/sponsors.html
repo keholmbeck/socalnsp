@@ -1,0 +1,50 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+    <!--
+    <div class="par">
+    
+    <div class="box_container">
+        <a href="{{ '/news' }}">
+            <div class="box_title">
+                <h3> News </h3>
+            </div>
+        </a>
+    </div>
+  
+    <a href="{{ '/join' }}">
+        <div class="box_container">
+            <div class="box_title">
+                <h3> Join </h3>
+            </div>
+        </div>
+    </a>
+    
+    </div>
+    -->
+    
+    <h3> 2015 - 2016 Sponsors </h3>
+    <div class="par">
+        Thank you to all who support the Southern California Region of the 
+        National Ski Patrol! Here are some featured sponsors for this season:
+        <br><br>
+        
+        <a href="http://www.marriott.com/hotels/travel/laxbh-residence-inn-long-beach/">
+        <img height="100px" 
+            src="{{ url_for('static', filename='temp_images/sponsors/residence_inn_LB.png') }}">
+        </img>
+        </a>
+        
+        <a href="http://www.bombethospitalitygroup.com/">
+        <img width="300px"
+            src="{{ url_for('static', filename='temp_images/sponsors/BHG.png') }}">
+        </img>            
+        </a>
+        <br><br>
+        
+        <br><br>
+
+    </div>
+
+{% endblock %}
