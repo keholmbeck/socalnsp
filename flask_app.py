@@ -6,50 +6,14 @@
 
 from flask import Flask, render_template, Blueprint
 from flask import request, redirect, flash
-from flask.ext.wtf import Form, RecaptchaField
+from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, validators
 import feedparser
-
-from flask.ext.mail import Message, Mail
  
 import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
 from app import *
-
-#---------- MAIL STUFF ------------ #
-app.config.from_object(__name__)
-mail = Mail(app)
-
-import sys
-sys.path.append('../PA_repo/')
-from app_config import *
-
-mail.init_app(app)
-
-class ContactForm(Form):
-    name    = TextField("Name",         [validators.Required("Please enter your name.")])
-    email   = TextField("Email",        [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
-    subject = TextField("Subject",      [validators.Required("Please enter a subject.")])
-    message = TextAreaField("Message",  [validators.Required("Please enter a message.")])
-    submit  = SubmitField("Send")
-    captcha = TextField("Type the website URL to verify you are not a robot", [validators.Required(), validators.EqualTo("socalnsp.org", message="Wrong")])
-    recaptcha = RecaptchaField()
-
-emails = list([ ("General Information",     "admin@socalnsp.org"), 
-                ("JOIN Ski Patrol",         "join@socalnsp.org"),
-                ("Alumni",                  "alumni@socalnsp.org"),
-                ("Avalanche",               "avalanche@socalnsp.org"),
-                ("Awards",                  "awards@socalnsp.org"),
-                ("Certified",               "certified@socalnsp.org"),
-                ("Instructor Development",  "instructordevelopment@socalnsp.org"),
-                ("Mountaineering",          "mountaineering@socalnsp.org"),
-                ("OEC",                     "oec@socalnsp.org"),
-                ("Senior",                  "senior@socalnsp.org"),
-                ("Ski & Toboggan",          "senior@socalnsp.org"),
-                ("Snowboarding",            "snowboarding@socalnsp.org")
-                ])
-# -------------------------------- #
 
 @app.route('/')
 @app.route('/home')
@@ -85,65 +49,6 @@ def news():
 
     return render_template('news.html', pageTitle="Upcoming Events", other_news=other_news, title_news=title_news, rss_feed=str)
 
-
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-    global emails
-    form = ContactForm(csrf_enabled=False)
-    nSelected = 1;
-    
-    if request.method == 'GET':
-        return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
-    
-    #   if request.method == 'POST':    
-    if form.validate() == False:
-        flash('All fields are required.')
-        return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
-    else:
-        return "Posted"
-        selected  = request.form[ "emailSelect" ]
-        selected  = int( selected )
-        recipient = emails[selected][1]
-        
-        msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
-        msg.body = """
-        (Email sent through socalnsp.org) \n 
-        From: %s (%s) \n\n 
-        %s
-        """ % (form.name.data, form.email.data, form.message.data)
-        mail.send(msg)
-
-        return render_template('contact.html', success=True)
-     
-@app.route('/temp', methods=['GET', 'POST'])
-def temp():
-    global emails
-    form = ContactForm(csrf_enabled=False)
-    nSelected = 1;
-    
-    if request.method == 'GET':
-        return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
-    
-    #   if request.method == 'POST':    
-    if form.validate() == False:
-        flash('All fields are required.')
-        return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
-    else:
-        return "Posted"
-        selected  = request.form[ "emailSelect" ]
-        selected  = int( selected )
-        recipient = emails[selected][1]
-        
-        msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
-        msg.body = """
-        (Email sent through socalnsp.org) \n 
-        From: %s (%s) \n\n 
-        %s
-        """ % (form.name.data, form.email.data, form.message.data)
-        mail.send(msg)
-
-        return render_template('contact.html', success=True)
-     
 @app.route('/join')
 def join():
     return render_template('join.html', pageTitle="Join NSP")
