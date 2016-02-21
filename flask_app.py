@@ -15,10 +15,18 @@ import cgitb; cgitb.enable()  # for troubleshooting
 
 from app import *
 
+@app.route('/bill')
+def bill():
+    return render_template('bill_eslick_fund.html', pageTitle='Fund');
+    
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('sponsors.html', pageTitle="Home")
+    return render_template('home.html', pageTitle="Home")
+    
+@app.route('/sponsors')
+def sponsors():
+    return render_template('sponsors.html', pageTitle="Our Sponsors")
     
 @app.route('/about')
 def about():

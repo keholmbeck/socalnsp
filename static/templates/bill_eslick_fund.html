@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1109260469105534',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    <h3> Bill Eslick </h3>
+    <div class="par">
+        <div
+          class="fb-like"
+          data-share="true"
+          data-width="450"
+          data-show-faces="true">
+        </div>
+        <br>
+        
+        <div class="fb-comments" data-href="{{ '/bill' }}" data-numposts="3">
+        </div>
+        <br>
+        
+        Thank you to all who support the Southern California Region of the 
+        National Ski Patrol! Here are some featured sponsors for this season:
+        <br><br>
+        
+        <a href="http://www.marriott.com/hotels/travel/laxbh-residence-inn-long-beach/">
+        <img height="100px" 
+            src="{{ url_for('static', filename='temp_images/sponsors/residence_inn_LB.png') }}">
+        </img>
+        </a>
+        
+        <a href="http://www.bombethospitalitygroup.com/">
+        <img width="300px"
+            src="{{ url_for('static', filename='temp_images/sponsors/BHG.png') }}">
+        </img>            
+        </a>
+        <br><br>
+        
+        <br><br>
+
+    </div>
+
+{% endblock %}
