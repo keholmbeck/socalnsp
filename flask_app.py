@@ -19,7 +19,7 @@ from app import *
 def banquet():
     return redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DFHCMBHGCVRSN');
     
-@app.route('/bill')
+@app.route('/bill_eslick_fund')
 def bill():
     return render_template('bill_eslick_fund.html', pageTitle='Fund');
     
