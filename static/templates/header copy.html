@@ -4,14 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible content="chrome=1">
+    <meta name="viewport content="width=device-width, initial-scale=1, user-scalable=no">
+    
     <title>NSP Southern California Region</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
-
     <link ref="shortcut icon" href="{{ url_for('static', filename='images/nsp_logo.ico') }}">
-
-    <meta name="viewport content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
+    <!-- -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}">
+    <!-- -->
+    
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -51,7 +53,7 @@
      <div id="menuicon"> <a href="#" onclick="toggleMenu(this);"> &#9776; </a></div>
      <!-- Menu items -->
 
-        <div id="menu"><ul>
+        <div class="nav" id="menu"><ul>
             <li><a href="/about">About</a>
                 <!--ul id="submenu">
                     <li><a href="http://kholmbeck.github.io/about/roadmap.html">Becoming a patroller</a></li>
@@ -112,12 +114,7 @@
         <div class="banner">
             <h2 id="pageTitle"> {{ pageTitle }} </h2>
 
-            {% if pageTitle=="Bill Eslick Fund" %}
-                <img src="{{ url_for('static', filename='images/Eslick/Toboggan_Trainer.jpg') }}">
-            {% else %}
-                <img src="{{ url_for('static', filename='images/banner.png') }}">
-            {% endif %}
-
+            <img src="{{ url_for('static', filename='images/banner.png') }}">
         </div>
 
         {% block content %}
@@ -127,6 +124,7 @@
     </section>
 
     <script src="{{ url_for('static', filename='javascripts/scale.fix.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </body>
 </html>

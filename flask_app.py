@@ -4,34 +4,63 @@
 # git push origin master
 #
 
-from flask import Flask, render_template, Blueprint
-from flask import request, redirect, flash
-from flask.ext.wtf import Form
-from wtforms import TextField, TextAreaField, SubmitField, validators
+from flask import Flask, render_template, Blueprint, request, redirect, flash
+from flask.ext.mail import Mail, Message
+
 import feedparser
- 
-import cgi
-import cgitb; cgitb.enable()  # for troubleshooting
+from forms import ContactForm
 
-from app import *
+import sys
+sys.path.append('../PA_repo')
 
+from app_config import *
+
+app = Flask(__name__,template_folder='static/templates',static_folder='static')
+config_app(app);
+mail = Mail(app)
+
+@app.route('/')
+@app.route('/home')
+def home():
+    return render_template('home.html', pageTitle="Home")
+    
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form     = ContactForm()
+    emails   = form.email_list
+    pageName = "Contact"
+    
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', pageTitle=pageName, form=form, emails=emails)
+        else:
+            msg = Message(form.subject.data, sender='keholmbeck@yahoo.com', recipients='admin@socalnsp.org')
+            msg.body = """
+            From: %s <%s>
+            %s
+            """ % (form.name.data, form.email.data, form.message.data)
+            
+            return msg
+            
+            mail.send(msg)
+            return render_template('contact.html', pageTitle=pageName, success=True)
+            
+    elif request.method == 'GET':
+        return render_template('contact.html', pageTitle=pageName, form=form, emails=emails)
+    
+@app.route('/sponsors')
+def sponsors():
+    return render_template('sponsors.html', pageTitle="Our Sponsors")
+    
 @app.route('/banquet')
 def banquet():
     return redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DFHCMBHGCVRSN');
     
 @app.route('/bill_eslick_fund')
 def bill():
-    return render_template('bill_eslick_fund.html', pageTitle='Fund');
-    
-@app.route('/')
-@app.route('/home')
-def home():
-    return render_template('home.html', pageTitle="Home")
-    
-@app.route('/sponsors')
-def sponsors():
-    return render_template('sponsors.html', pageTitle="Our Sponsors")
-    
+    return render_template('bill_eslick_fund.html', pageTitle="Bill Eslick Fund");
+
 @app.route('/about')
 def about():
     return render_template('about.html', pageTitle="About")
@@ -73,7 +102,7 @@ def member_patrols():
 def programs():
     return render_template('programs.html', pageTitle="Programs")
 
- #---------- PROGRAMS ---------#
+#---------- PROGRAMS ---------#
 @app.route('/programs/alumni')
 def alumni():
     return render_template('programs/alumni.html', pageTitle="Alumni Program")

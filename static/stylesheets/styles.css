@@ -135,11 +135,10 @@ p, ul, ol, table, pre, dl {
 
 
 .box_container {
-    margin: 10px;
-    width: 100px;
-    height: 50px;
+
     border: 1px solid black;
 }
+
 .box_title {
     text-align: center;
 }
