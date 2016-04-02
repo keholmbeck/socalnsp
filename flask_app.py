@@ -7,23 +7,24 @@
 from flask import Flask, render_template, Blueprint, request, redirect, flash
 from flask.ext.mail import Mail, Message
 
-import feedparser
-from forms import ContactForm
+#import feedparser
+#from forms import ContactForm
 
-import sys
-sys.path.append('../PA_repo')
+#import sys
+#sys.path.append('../PA_repo')
 
-from app_config import *
+#from app_config import *
 
 app = Flask(__name__,template_folder='static/templates',static_folder='static')
-config_app(app);
-mail = Mail(app)
+#config_app(app);
+#mail = Mail(app)
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
-    
+ 
+'''    
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form     = ContactForm()
@@ -48,7 +49,8 @@ def contact():
             
     elif request.method == 'GET':
         return render_template('contact.html', pageTitle=pageName, form=form, emails=emails)
-    
+'''
+
 @app.route('/sponsors')
 def sponsors():
     return render_template('sponsors.html', pageTitle="Our Sponsors")
