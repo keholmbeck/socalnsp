@@ -7,7 +7,7 @@
 from flask import Flask, render_template, Blueprint, request, redirect, flash
 from flask.ext.mail import Mail, Message
 
-#import feedparser
+import feedparser
 #from forms import ContactForm
 
 #import sys
