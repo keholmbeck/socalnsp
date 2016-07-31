@@ -17,7 +17,7 @@ import cgitb; cgitb.enable()  # for troubleshooting
 
 from app import *
 
-#---------- MAIL STUFF ------------ #
+'''#---------- MAIL STUFF ------------ #
 app.config.from_object(__name__)
 mail = Mail(app)
 
@@ -30,7 +30,7 @@ mail.init_app(app)
 
 from forms import *
 
-#-----------------------------------#
+#-----------------------------------#'''
 
 @app.route('/')
 @app.route('/home')
@@ -88,6 +88,8 @@ def news():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    return test
+    '''
     global emails
     form = ContactForm(csrf_enabled=False)
     nSelected = 1;
@@ -115,7 +117,7 @@ def contact():
         mail.send(msg)
 
         return render_template('contact.html', success=True)
-
+#'''
 
 #---------- PROGRAMS ---------#
 @app.route('/programs/<progname>')
