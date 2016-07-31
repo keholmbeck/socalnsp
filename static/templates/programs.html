@@ -6,25 +6,54 @@
     <h3> Programs </h3>
     -->
     <div class="par">
-        <table id="progList">
+        <table class="table" id="progList">
             <tr>
-                <td> <a href="{{ 'programs/alumni' }}">    <img src="{{ url_for('static', filename='images/alumni.png') }}"> </a> </td>
-                <td> <a href="{{ 'programs/avalanche' }}"> <img src="{{ url_for('static', filename='images/avalanche.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/awards' }}">    <img src="{{ url_for('static', filename='images/awards.png') }}"> </a></td>
+                <td> <a href="{{ url_for('prog_route', progname='alumni') }}">
+                        <img src="{{ url_for('static', filename='images/alumni.png') }}" class="img-responsive">
+                    </a> </td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='avalanche') }}">
+                        <img src="{{ url_for('static', filename='images/avalanche.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='awards') }}"> 
+                        <img src="{{ url_for('static', filename='images/awards.png') }}" class="img-responsive">
+                    </a></td>
             <tr>
             <tr>
-                <td> <a href="{{ 'programs/certified' }}"> <img src="{{ url_for('static', filename='images/certified.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/instructor_development' }}"> <img src="{{ url_for('static', filename='images/id.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/OEC' }}"> <img src="{{ url_for('static', filename='images/OEC.png') }}"> </a></td>
+                <td> <a href="{{ url_for('prog_route', progname='certified') }}">
+                        <img src="{{ url_for('static', filename='images/certified.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='instructor_development') }}">
+                        <img src="{{ url_for('static', filename='images/id.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='OEC') }}">
+                        <img src="{{ url_for('static', filename='images/OEC.png') }}" class="img-responsive">
+                    </a></td>
             </tr>
             <tr>
-                <td> <a href="{{ 'programs/MTR' }}"> <img src="{{ url_for('static', filename='images/MTR.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/SAR' }}"> <img src="{{ url_for('static', filename='images/SAR.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/senior' }}"> <img src="{{ url_for('static', filename='images/senior.png') }}"> </a></td>
+                <td> <a href="{{ url_for('prog_route', progname='MTR') }}">
+                        <img src="{{ url_for('static', filename='images/MTR.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='SAR') }}">
+                        <img src="{{ url_for('static', filename='images/SAR.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='senior') }}">
+                        <img src="{{ url_for('static', filename='images/senior.png') }}" class="img-responsive">
+                    </a></td>
             </tr>
             <tr>
-                <td> <a href="{{ 'programs/ski_and_toboggan' }}"> <img src="{{ url_for('static', filename='images/ski_and_toboggan.png') }}"> </a></td>
-                <td> <a href="{{ 'programs/snowboard' }}"> <img src="{{ url_for('static', filename='images/snowboard.png') }}"> </a></td>
+                <td> <a href="{{ url_for('prog_route', progname='ski_and_toboggan') }}">
+                        <img src="{{ url_for('static', filename='images/ski_and_toboggan.png') }}" class="img-responsive">
+                    </a></td>
+                    
+                <td> <a href="{{ url_for('prog_route', progname='snowboard') }}">
+                        <img src="{{ url_for('static', filename='images/snowboard.png') }}" class="img-responsive">
+                    </a></td>
             </tr>
         </table>
     </div>

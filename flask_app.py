@@ -4,69 +4,62 @@
 # git push origin master
 #
 
-from flask import Flask, render_template, Blueprint, request, redirect, flash
-from flask.ext.mail import Mail, Message
-
+from flask import Flask, render_template, Blueprint
+from flask import request, redirect, flash
+from flask.ext.wtf import Form, RecaptchaField
+from wtforms import TextField, TextAreaField, SubmitField, validators
 import feedparser
-#from forms import ContactForm
 
-#import sys
-#sys.path.append('../PA_repo')
+from flask.ext.mail import Message, Mail
+ 
+import cgi
+import cgitb; cgitb.enable()  # for troubleshooting
 
-#from app_config import *
+from app import *
 
-app = Flask(__name__,template_folder='static/templates',static_folder='static')
-#config_app(app);
-#mail = Mail(app)
+#---------- MAIL STUFF ------------ #
+app.config.from_object(__name__)
+mail = Mail(app)
+
+import sys
+sys.path.append('../PA_repo/')
+from app_config import *
+
+config_app(app)
+mail.init_app(app)
+
+from forms import *
+
+#-----------------------------------#
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
- 
-'''    
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-    form     = ContactForm()
-    emails   = form.email_list
-    pageName = "Contact"
     
-    if request.method == 'POST':
-        if form.validate() == False:
-            flash('All fields are required.')
-            return render_template('contact.html', pageTitle=pageName, form=form, emails=emails)
-        else:
-            msg = Message(form.subject.data, sender='keholmbeck@yahoo.com', recipients='admin@socalnsp.org')
-            msg.body = """
-            From: %s <%s>
-            %s
-            """ % (form.name.data, form.email.data, form.message.data)
-            
-            return msg
-            
-            mail.send(msg)
-            return render_template('contact.html', pageTitle=pageName, success=True)
-            
-    elif request.method == 'GET':
-        return render_template('contact.html', pageTitle=pageName, form=form, emails=emails)
-'''
-
-@app.route('/sponsors')
-def sponsors():
-    return render_template('sponsors.html', pageTitle="Our Sponsors")
+@app.route('/<url_name>')
+def gen_route(url_name):
+    url_name = url_name.lower()
+    file = url_name
+    page = 'Error'
     
-@app.route('/banquet')
-def banquet():
-    return redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DFHCMBHGCVRSN');
+    if url_name == 'about':
+        page = 'About'
+    elif url_name == 'join':
+        page = 'Join NSP'
+    elif url_name == 'member_patrols':
+        page = 'Member Patrols'
+    elif url_name == 'programs':
+        page = 'Programs'
+    elif url_name == 'bill_eslick_fund':
+        page = "Bill Eslick Fund"
+    elif url_name == 'sponsors':
+        page = "Sponsors"
+    else:
+        file = 'error'
     
-@app.route('/bill_eslick_fund')
-def bill():
-    return render_template('bill_eslick_fund.html', pageTitle="Bill Eslick Fund");
-
-@app.route('/about')
-def about():
-    return render_template('about.html', pageTitle="About")
-
+    return render_template(file+'.html', pageTitle=page)
+    
 @app.route('/news')
 def news():
     d = feedparser.parse('http://socalnsp.blogspot.com/feeds/posts/default?alt=rss')
@@ -92,62 +85,72 @@ def news():
 
     return render_template('news.html', pageTitle="Upcoming Events", other_news=other_news, title_news=title_news, rss_feed=str)
 
-@app.route('/join')
-def join():
-    return render_template('join.html', pageTitle="Join NSP")
 
-@app.route('/MemberPatrols')
-def member_patrols():
-    return render_template('MemberPatrols.html', pageTitle="Member Patrols")
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    global emails
+    form = ContactForm(csrf_enabled=False)
+    nSelected = 1;
+    
+    if request.method == 'GET':
+        return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
+    
+    #   if request.method == 'POST':    
+    if form.validate() == False:
+        flash('All fields are required.')
+        return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
+        
+    else:
+        return "Posted"
+        selected  = request.form[ "emailSelect" ]
+        selected  = int( selected )
+        recipient = emails[selected][1]
+        
+        msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
+        msg.body = """
+        (Email sent through socalnsp.org) \n 
+        From: %s (%s) \n\n 
+        %s
+        """ % (form.name.data, form.email.data, form.message.data)
+        mail.send(msg)
 
-@app.route('/programs')
-def programs():
-    return render_template('programs.html', pageTitle="Programs")
+        return render_template('contact.html', success=True)
+
 
 #---------- PROGRAMS ---------#
-@app.route('/programs/alumni')
-def alumni():
-    return render_template('programs/alumni.html', pageTitle="Alumni Program")
+@app.route('/programs/<progname>')
+def prog_route(progname):
 
-@app.route('/programs/avalanche')
-def avalanche():
-    return render_template('programs/avalanche.html', pageTitle="Avalanche Program")
-
-@app.route('/programs/awards')
-def awards():
-    return render_template('programs/awards.html', pageTitle="Awards")
-
-@app.route('/programs/certified')
-def certified():
-    return render_template('programs/certified.html', pageTitle="Certified Program")
-
-@app.route('/programs/instructor_development')
-def instructor_development():
-    return render_template('programs/instructor_development.html', pageTitle="Instructor Development")
-
-@app.route('/programs/MTR')
-def MTR():
-    return render_template('programs/MTR.html', pageTitle="Mountain Travel & Rescue")
-
-@app.route('/programs/OEC')
-def OEC():
-    return render_template('programs/OEC.html', pageTitle="Outdoor Emergency Care")
-
-@app.route('/programs/SAR')
-def SAR():
-    return render_template('programs/SAR.html', pageTitle="Search & Rescue")
-
-@app.route('/programs/senior')
-def senior():
-    return render_template('programs/senior.html', pageTitle="Senior Program")
-
-@app.route('/programs/ski_and_toboggan')
-def ski_and_tobbogan():
-    return render_template('programs/ski_and_toboggan.html', pageTitle="Ski & Toboggan Program")
-
-@app.route('/programs/snowboard')
-def snowboard():
-    return render_template('programs/snowboard.html', pageTitle="Snowboard Program")
+    proganame = progname.lower()
+    file = progname
+    page = 'Error'
+    
+    if progname == 'alumni':
+        page = 'Alumni Program'
+    elif progname == 'avalanche':
+        page = 'Avalanche Program'
+    elif progname == 'awards':
+        page = 'Awards'
+    elif progname == 'certified':
+        page = 'Certified Program'
+    elif progname == 'instructor_development':
+        page = 'Instructor Development'
+    elif progname == 'MTR':
+        page = 'Mountain Travel & Rescue'
+    elif progname == 'OEC':
+        page = 'Outdoor Emergency Care'
+    elif progname == 'SAR':
+        page = 'Search & Rescue'
+    elif progname == 'senior':
+        page = 'Senior Program'
+    elif progname == 'ski_and_toboggan':
+        page = 'Ski & Toboggan Program'
+    elif progname == 'snowboard':
+        page = 'Snowboard Program'
+    else:
+        return render_template('error.html', pageTitle=page);
+        
+    return render_template('programs/' + file + '.html', pageTitle=page);
 
 
 if __name__ == '__main__':

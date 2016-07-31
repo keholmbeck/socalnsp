@@ -1,14 +1,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,500,700);
 
-@import url(menubar.css);
-@import url(banner.css);
-@import url(tables.css);
-@import url(popup.css);
-@import url(sticky_footer.css);
-@import url(mobile_styles.css);
-
-
 /* CHROME
 
     mint: rgb(204, 255, 204)
@@ -83,154 +75,21 @@ body
   background-position: right top;
 }
 
-.par ul {
-  /*list-style-type: none;*/
-    padding: 0 0 0 0px;
-    padding-left: 20px;
-    /*margin: 30px 100px 0 0;*/
-}
-
-.par ol li
+.sidebar-nav a
 {
-    padding-top: 20px;
+    outline: none;
 }
 
-.par ul li {
-  padding: 10px 0 0 0px;
+div.modal-content {
+    height: 80vh; /*Sets the height to 80/100ths of the viewport.*/
 }
-
-.par li h4 {
-  margin: 0px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color:#222;
-  margin:20px 0 20px 0px;
-}
-
-/*
-p, ul, ol, table, pre, dl {
-   margin:0 20px 20px;
-}
-*/
-
-.im_right, .im_left
-{
-  clear: both;
-  /* height: 350px; */
-  margin-top: 50px;
-  float: right;
-  padding: 20px;
-}
-
-.im_right
-{
-  float: right;
-}
-
-.im_left
-{
-  float: left;
+div.modal-body {
+    height: 80%;
 }
 
 
-.box_container {
-
-    border: 1px solid black;
-}
-
-.box_title {
-    text-align: center;
-}
-
-.hover_title
-{
-   background-color:#FFFFFF;
-   border: 1px solid gray;
-   width: 300px;
-   height: 200px;
-   margin-bottom: 20px;
-   text-align: center;
-   vertical-align: middle;
-}
-.hover_title:hover
-{
-   background-color:#FF0000;
-   cursor: pointer;
-}
-
-.par, .superpar {
-  text-align: justify;
-  padding: 15px;
-  /*background: rgba(255, 255, 255, 0.3);*/
-  border-radius: 10px;
-  display: block;
-  /*min-width: inherit;*/
-  
-  overflow: auto;
-}
-
-.par {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.flash {
-    font-size: 9px;
-    display: inline;
-}
-#contactForm {
-    float: left;
-    text-align:right;
-}
-#contactForm input {
-    margin-bottom: 10px;
-}
-
-h1, h2, h3 {
-  line-height:1.1;
-}
-
-h1 {
-  font-size:28px;
-}
-
-h2 {
-  color:#393939;
-}
-
-h3, h4, h5, h6 {
-  color:#494949;
-}
-
-a {
-  color: #008080;
-  text-decoration: none;
-}
-
-a small {
-  font-size:11px;
-  color:#777;
-  margin-top:-0.6em;
-  display:block;
-}
-
-img {
-  max-width:100%;
-}
-
-strong {
-  color:#222;
-  font-weight:700;
-}
-
-section {
-  float:left;
-  padding-left: 300px;
-  padding-bottom: 50px;
-  padding-right: 25px;
-  /* width: 800px; */
-}
-
-small {
-  font-size:11px;
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
 }

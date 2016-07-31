@@ -4,16 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible content="chrome=1">
-    <meta name="viewport content="width=device-width, initial-scale=1, user-scalable=no">
-    
     <title>NSP Southern California Region</title>
 
-    <link ref="shortcut icon" href="{{ url_for('static', filename='images/nsp_logo.ico') }}">
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/simple-sidebar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
-    <!-- -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}">
-    <!-- -->
-    
+
+    <link ref="shortcut icon" href="{{ url_for('static', filename='images/nsp_logo.ico') }}">
+
+    <meta name="viewport content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -35,6 +42,7 @@
 </head>
 
 <body>
+
     <!-- include header: logo, menubar, etc. -->
    <div class="background_image"></div>
 
@@ -53,7 +61,7 @@
      <div id="menuicon"> <a href="#" onclick="toggleMenu(this);"> &#9776; </a></div>
      <!-- Menu items -->
 
-        <div class="nav" id="menu"><ul>
+        <div id="menu"><ul>
             <li><a href="/about">About</a>
                 <!--ul id="submenu">
                     <li><a href="http://kholmbeck.github.io/about/roadmap.html">Becoming a patroller</a></li>
@@ -80,7 +88,7 @@
                 </ul>
                -->
             </li>
-            <li><a href=" {{ '/MemberPatrols' }}"> Patrols</a></li>
+            <li><a href=" {{ '/member_patrols' }}"> Patrols</a></li>
             <li><a href="mailto:admin@socalnsp.org"> &#9742; Contact Us</a></li>
         </ul></div>
 
@@ -114,7 +122,12 @@
         <div class="banner">
             <h2 id="pageTitle"> {{ pageTitle }} </h2>
 
-            <img src="{{ url_for('static', filename='images/banner.png') }}">
+            {% if pageTitle=="Bill Eslick Fund" %}
+                <img src="{{ url_for('static', filename='images/Eslick/Toboggan_Trainer.jpg') }}">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/banner.png') }}">
+            {% endif %}
+
         </div>
 
         {% block content %}
@@ -124,7 +137,6 @@
     </section>
 
     <script src="{{ url_for('static', filename='javascripts/scale.fix.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </body>
 </html>

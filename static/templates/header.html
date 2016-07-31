@@ -6,17 +6,29 @@
     <meta http-equiv="X-UA-Compatible content="chrome=1">
     <title>NSP Southern California Region</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{ url_for('static', filename='javascripts/jquery.js') }}"></script>
 
-    <link ref="shortcut icon" href="{{ url_for('static', filename='images/nsp_logo.ico') }}">
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='javascripts/bootstrap.min.js') }}"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/simple-sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/banner.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/mobile_styles.css') }}">
+
+    <link rel="icon" ref="shortcut icon" href="{{ url_for('static', filename='images/nsp_logo.ico') }}">
 
     <meta name="viewport content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <script type="text/javascript" src="{{ url_for('static', filename='javascripts/calendar_popup.js')}}"></script>
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -33,100 +45,165 @@
 </head>
 
 <body>
-    <!-- include header: logo, menubar, etc. -->
-   <div class="background_image"></div>
+    <div class="background_image"></div>
 
-    <div class="sidebar">
-        <div class="menubar">
-            <div id="menutitle">
-            <!-- NSP Logo & Page title -->
-            <a href="{{ '/' }}">
-               <img src="{{ url_for('static', filename='images/Logo_WhiteCross_WhiteBorder2.png') }}"
-                    height=75 align="left style="PADDING-RIGHT: 20px; BACKGROUND: transparent">
+    <div id="wrapper">
 
-               <h1 align="left">Southern California Region</h1>
+        <!-- Sidebar -->
+        <div class="navbar" id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+            
+                <li class="sidebar-brand">
+                    <a href="{{url_for('home')}}">
+                        <img src="{{ url_for('static', filename='images/Logo_WhiteCross_WhiteBorder2.png') }}">
+
+                        <h2> Southern California Region </h2>
+                    </a>
+                </li>
+                
+                <li {% if request.path=="/about" %}class="activeLink"{% endif %}>
+                    <a href="{{url_for('gen_route', url_name='about')}}">
+                        <table>
+                            <td><span class="glyphicon glyphicon-info-sign"></span></td>
+                            <td> About </td>
+                        </table>
+                    </a>
+                </li>
+                
+                <li {% if request.path=="/join" %}class="activeLink"{% endif %}>
+                    <a href="{{url_for('gen_route', url_name='join')}}">
+                        <table>
+                            <td><span class="glyphicon glyphicon-plus"></span></td>
+                            <td> Join </td>
+                        </table>
+                    </a>
+                </li>
+
+                <li style="cursor: pointer;"><a data-toggle="modal" data-target="#calendar">
+                    <table>
+                        <td><span class="glyphicon glyphicon-calendar"></span></td>
+                        <td> Calendar </td>
+                    </table>
+                </a></li>
+                
+                <li {% if request.path=="/news" %}class="activeLink"{% endif %}>
+                    <a href="/news">
+                        <table>
+                            <td><span class="glyphicon glyphicon-pencil"></span></td>
+                            <td> News </td>
+                        </table>
+                    </a>
+                </li>
+                
+                <li {% if request.path=="/programs" %}class="activeLink"{% endif %}>
+                    <a href="{{url_for('gen_route', url_name='programs')}}">
+                        <table>
+                            <td><span class="glyphicon glyphicon-list-alt"></span></td>
+                            <td> Programs </td>
+                        </table>
+                    </a>
+                </li>
+                
+                <li {% if request.path=="/member_patrols" %}class="activeLink"{% endif %}>
+                    <a href="{{url_for('gen_route', url_name='member_patrols')}}">
+                        <table>
+                            <td><span class="glyphicon glyphicon-globe"></span></td>
+                            <td> Patrols <td>
+                        </table>
+                    </a>
+                </li>
+                
+                <li><a href="mailto:admin@socalnsp.org" ui-sref-active>
+                    <table>
+                        <td><span class="glyphicon glyphicon-phone-alt"></span></td>
+                        <td> Contact Us </td>
+                    </table>
+                </a></li>
+                
+                <!--li>
+                    <a href="https://www.facebook.com/groups/113832905318788/">
+                       <img src="static/images/FB_logo_57.png">
+                    </a>
+                   <br>
+                   <small> Copyright &copy 2015 Southern California Region NSP</small>
+               </li-->
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Calendar modal -->
+        <div id="calendar" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Calendar</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <iframe src="https://www.google.com/calendar/embed?src=socalnspweb%40gmail.com&ctz=America/Los_Angeles"
+                            style="border:0" frameborder="0" scrolling="no"
+                            width="100%" height="100%">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <a href="{{url_for('home')}}">
+                <img src="{{ url_for('static', filename='images/Logo_WhiteCross_WhiteBorder2.png') }}">
             </a>
+            Southern California Region
+            <div id="menuIcon" class="pull-right">
+                <button type="button" class="btn btn-default" id="menu-toggle">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <div class="container-fluid">
+                <div class="banner">
+                    <h2 id="pageTitle"> {{ pageTitle }} </h2>
+
+                    {% if pageTitle=="Bill Eslick Fund" %}
+                        <img src="{{ url_for('static', filename='images/Eslick/Toboggan_Trainer.jpg') }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/banner.png') }}">
+                    {% endif %}
+
+                </div>
+                {% block content %}
+                {% endblock %}
+            </div>
+            
         </div>
-
-     <div id="menuicon"> <a href="#" onclick="toggleMenu(this);"> &#9776; </a></div>
-     <!-- Menu items -->
-
-        <div id="menu"><ul>
-            <li><a href="/about">About</a>
-                <!--ul id="submenu">
-                    <li><a href="http://kholmbeck.github.io/about/roadmap.html">Becoming a patroller</a></li>
-                </ul-->
-            </li>
-            <li><a href="{{ '/join' }}"> Join </a></li>
-
-            <li id="lcal"><a href="#" onclick="popup('popUpDiv')">Calendar</a></li>
-            <li><a href="{{ '/news' }}">News</a></li>
-            <li><a href="{{ '/programs' }}">Programs</a>
-               <!--
-                <ul id="submenu">
-                    <li><a href=" {{ url_for('static', filename='templates/programs/alumni.html') }}">Alumni</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/avalanche.html') }}">Avalanche</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/awards.html') }}">Awards</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/certified.html') }}">Certified</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/instructor_development.html') }}">Instructor Development</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/MTR.html') }}">MTR</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/OEC.html') }}">Outdoor Emergency Care</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/SAR.html') }}">Search & Rescue</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/senior.html') }}">Senior</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/ski_and_tobbogan.html') }}">Ski & Tobbogan</a></li>
-                    <li><a href=" {{ url_for('static', filename='templates/programs/snowboard.html') }}">Snowboard</a></li>
-                </ul>
-               -->
-            </li>
-            <li><a href=" {{ '/MemberPatrols' }}"> Patrols</a></li>
-            <li><a href="mailto:admin@socalnsp.org"> &#9742; Contact Us</a></li>
-        </ul></div>
-
-       <div class="sidefooter">
-           <a href="https://www.facebook.com/groups/113832905318788/">
-               <img src="{{ url_for('static', filename='images/FB_logo_57.png') }}">
-           </a>
-           <br>
-           <small> Copyright &copy 2015 Southern California Region NSP</small>
-       </div>
-    </div>
-    <!-- end menubar div -->
-
-    <!--POPUP-->
-    <div id="blanket" style="display:none;"></div>
-    <div id="popUpDiv" style="display:none;">
-        <iframe src="https://www.google.com/calendar/embed?src=socalnspweb%40gmail.com&ctz=America/Los_Angeles"
-            style="border:0" frameborder="0" scrolling="no">
-        </iframe>
+        <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- / POPUP-->
-    </div>
+    <!-- /#wrapper -->
+    
 
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        
+        // Trigger click when clicking outside of menu for small page 
+        $("#page-content-wrapper").click(function(e) {
+            //e.preventDefault();
 
-    <section>
-    <br>
-
-    <div class="superpar">
-
-        <div class="banner">
-            <h2 id="pageTitle"> {{ pageTitle }} </h2>
-
-            {% if pageTitle=="Bill Eslick Fund" %}
-                <img src="{{ url_for('static', filename='images/Eslick/Toboggan_Trainer.jpg') }}">
-            {% else %}
-                <img src="{{ url_for('static', filename='images/banner.png') }}">
-            {% endif %}
-
-        </div>
-
-        {% block content %}
-        {% endblock %}
-
-    </div>
-    </section>
-
-    <script src="{{ url_for('static', filename='javascripts/scale.fix.js') }}"></script>
+            if( $("#wrapper").hasClass("toggled") )
+               $("#menu-toggle").trigger("click")
+        });
+    </script>
 
 </body>
 </html>

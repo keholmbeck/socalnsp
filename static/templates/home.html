@@ -5,14 +5,7 @@
     <div class="par">
 
     <div class="box_container">
-        <a href="http://www.socalnsp.org/banquet">
-            <div class="box_title">
-                <h3> Register for the 2016 Banquet! </h3>
-            </div>
-        </a>
-    </div>
-    <div class="box_container">
-        <a href="{{ '/sponsors' }}">
+        <a href="{{ url_for('gen_route', url_name='sponsors') }}">
             <div class="box_title">
                 <h3> Sponsors </h3>
             </div>
@@ -21,22 +14,23 @@
 
     <!-- -->
     <div class="box_container">
-        <a href="{{ '/bill_eslick_fund' }}">
+        <a href="{{ url_for('gen_route', url_name='bill_eslick_fund') }}">
             <div class="box_title">
                 <h3> Bill Eslick Memorial Fund </h3>
             </div>
         </a>
     </div>
     <!-- -->
+    
     <div class="box_container">
-        <a href="{{ '/news' }}">
+        <a href="{{ url_for('news') }}">
             <div class="box_title">
                 <h3> News </h3>
             </div>
         </a>
     </div>
 
-    <a href="{{ '/join' }}">
+    <a href="{{url_for('gen_route', url_name='join')}}">
         <div class="box_container">
             <div class="box_title">
                 <h3> Join </h3>

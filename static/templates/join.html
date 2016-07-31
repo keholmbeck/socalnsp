@@ -1,7 +1,7 @@
 {% extends "header.html" %}
 
 {% block content %}
-        <img class="im_right" height="350px" src="{{ url_for('static', filename='images/service_safety_nsp.png') }}"></img>
+        <img class="pull-right" height="350px" src="{{ url_for('static', filename='images/service_safety_nsp.png') }}"></img>
 
     <h3> We're A Different Breed </h3>
     <div class="par">
@@ -109,7 +109,7 @@
     
     <h3> Ready To Join? </h3>
     <div class="par">
-        Contact us!
+        <b> <a href="{{url_for('contact')}}">Contact us!</a> </b>
     </div>
     
 {% endblock %}

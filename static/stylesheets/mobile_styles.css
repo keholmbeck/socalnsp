@@ -4,24 +4,57 @@ html, body {
     height: auto;
 }
 
-@media (max-width: 800px)
+@media (min-width: 770px)
+{
+    .navbar-fixed-top {
+        display: none;
+    }
+}
+
+@media(min-width:770px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0px;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 770px)
 {
     html body
     {
         width: 100%;
         height: 100%;
-
-        min-width: 290px;
     }
 
     /* have to add "body" to make more specific */
-    body section
+    body .container-fluid
     {
         /*background-color: white;*/
         z-index: -100;
         
         font-size: small;
-        width: 90%;
+        width: 100%;
         clear: both;
         display: block;
 
@@ -30,9 +63,42 @@ html, body {
 
         padding-left: 20px;
         padding-right: 0px;
-        padding-top: 120px;
+        padding-top: 50px;
     }
 
+    /* don't display huge sidebar logo on small screen*/
+    .sidebar-brand {
+        display: none;
+    }
+    
+    /* .toggled only happens in small window */
+    /*
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: absolute;
+        margin-right: -250px;
+    }
+    */
+    #sidebar-wrapper {
+        background: rgba(105, 105, 105, 1);
+    }
+    
+    #wrapper.toggled #sidebar-wrapper {
+        margin-top: 50px;
+        float: right !important;
+        height: 300px;
+    }
+    #sidebar-wrapper {
+        width: 300px;
+        height: 0;
+    }
+    
     .banner img
     {
         display: none;
@@ -47,108 +113,17 @@ html, body {
         /*background: rgba(105, 105, 105, 1.0);*/
     }
 
-    .superpar > .par
-    {
-        text-align: left;
-    }
-
     section iframe{ width: 80% }
-    
-    .sidebar
-    {
-        z-index: 100;
-        background: rgba(105, 105, 105, 1.0);
 
-        clear: both;
-        display: inline;
-        overflow: hidden;
-
-        height: 90px;
-        width: auto;
-        min-width: 100%;
-        max-width: 100%;
-    }
-
-    .menubar
-    {
-        z-index: 100;
-        background: rgba(100,100,100, 1.0);
-        clear: both;
-        width: 100%;
-        text-align: right;
-    }
-
-    .menubar ul {
-        height: 100%;
-    }
-    
-    .menubar li
-    {
-        vertical-align: middle;
-    }
-    
-    #menu {
-        margin-top: 50px;
-        clear: both;
-        /* display: inline-block; */
-        display: block;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        
-        padding-bottom: 0px;
-        border-top: 1px solid white;
-    }
-
-    #menuicon {
-        clear: both;
-        width: 100%;
-
-        display: block;
-        float: right;
-        top: 50px;
-        right: 0;
-        padding-right: 10px;
-        position: absolute;
-    }
-    
-    #menuicon a { color: white; }
-
-    #menutitle {
-        padding-bottom: 0;
-        padding-top: 20px;
-    }
-
-    #menutitle h1 {
-        font-size: 17px;
-    }
-
-    #menutitle img {
-        height: 50px;
-        width: auto;
-    }
-
-    .sidefooter 
-    {
-        display: none;
-    }
-    
     #memberPatrols td
     {
         display: block;
     }
     
-    #progList td
+    #progList
     {
-        text-align: center;
-        vertical-align: middle;
-        display: block;
+        max-width: 100%;
+        width: 100%;
     }
-    #progList tr
-    {
-        text-align: center;
-        vertical-align: middle;
-        display: block;
-    }
-} /* end @media max-width */
 
+} /* end @media max-width */

@@ -1,0 +1,126 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.navbar {
+    background: rgba(105, 105, 105, 0.6);
+    color: #c0c0c0;
+    border: none;
+}
+
+#sidebar-wrapper {
+    border-radius: 0;
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #c0c0c0;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: inherit;
+    background: rgba(181,34,45,0.8);
+
+    -webkit-transition: 0.5s all linear;
+    -moz-transition: 0.5s all linear;
+    -o-transition: 0.5s all linear;
+    transition: 0.5s all linear;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav li.activeLink
+{
+    background: rgba(128, 128, 128, 0.5);
+}
+
+.sidebar-nav > .sidebar-brand > a:hover {
+    background: inherit;
+    color: #ffffff;
+    
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.sidebar-nav > .sidebar-brand > a {
+    color: #ffffff;
+    
+    padding-bottom: 20px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.sidebar-nav img {
+    height: 75px;
+    width: 70px;
+    background: transparent;
+    margin-left: 10px;
+    float: left;
+}
+
+.navbar-fixed-top {
+    background: rgba(105, 105, 105, 1.0);
+    height: 30px;
+    display: inline;
+    color: #ffffff;
+}
+
+.navbar-fixed-top #menuIcon
+{
+    display: inline;
+    padding: 5px;
+}
+
+.navbar-fixed-top img
+{
+    vertical-align: middle;
+    padding: 5px;
+    height: 120%;
+}
