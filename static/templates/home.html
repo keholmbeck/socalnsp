@@ -4,6 +4,7 @@
 
     <div class="par">
 
+    <!--
     <div class="box_container">
         <a href="{{ url_for('gen_route', url_name='sponsors') }}">
             <div class="box_title">
@@ -11,33 +12,42 @@
             </div>
         </a>
     </div>
+    -->
+
+    <div class="row text-center" style="max-width:80%;">
+        <a href="http://socalnsp.blogspot.com/2016/07/oec-burbank.html">
+            <h3> Meet & Greet!</h3>
+            <img class="img-responsive" src="{{ url_for('static', filename='temp_images/recruitment_flyer_2016.jpg') }}"></img>
+        </a>
+    </div>
+    <hr>
+
+    <div class="row" style="max-width: 80%">
+        <div class="col-md-6 col-lg-6">
+            <a href="{{url_for('gen_route', url_name='member_patrols')}}">
+                <h3> Locations </h3>
+                <img class="img-responsive" src="{{ url_for('static', filename='images/region_map.jpg') }}"></img>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <a href="http://socalnsp.blogspot.com/2016/07/oec-burbank.html">
+                <h3> Upcoming OEC Class </h3>
+                <img class="img-responsive" src="{{ url_for('static', filename='temp_images/OEC Flyer-page-001.jpg') }}"></img>
+            </a>
+        </div>
+    </div>
+    <hr>
 
     <!-- -->
-    <div class="box_container">
+    <div class="row">
         <a href="{{ url_for('gen_route', url_name='bill_eslick_fund') }}">
             <div class="box_title">
-                <h3> Bill Eslick Memorial Fund </h3>
+                <h3> Bill Eslick Memorial Fund >> </h3>
             </div>
         </a>
     </div>
     <!-- -->
-    
-    <div class="box_container">
-        <a href="{{ url_for('news') }}">
-            <div class="box_title">
-                <h3> News </h3>
-            </div>
-        </a>
-    </div>
 
-    <a href="{{url_for('gen_route', url_name='join')}}">
-        <div class="box_container">
-            <div class="box_title">
-                <h3> Join </h3>
-            </div>
-        </div>
-    </a>
-
-    </div>
+</div>
 
 {% endblock %}
