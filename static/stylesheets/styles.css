@@ -93,3 +93,84 @@ div.modal-body {
     position: absolute;
     padding: 15px;
 }
+
+/***************************************************/
+/* Clickable Region Map -- fix for small screen */
+svg image
+{
+    opacity: 0.70;
+}
+
+svg text
+{
+    font-family: FontAwesome;
+    font-size: 30px;
+}
+
+svg g > .title
+{
+    visibility: hidden;
+}
+svg g:hover > .title
+{
+    visibility: visible;
+}
+
+svg g:hover
+{
+    cursor: pointer;
+    fill: #e60000;
+}
+
+/* High Sierra */
+.mammoth-nordic
+{
+    fill: #55134e;
+}
+.mt-pinos
+{
+    fill: orange;
+}
+.alta-sierra
+{
+    fill: #A0596B;
+}
+
+/* Big Bear Section */
+.big-bear
+{
+    fill: #006699;
+}
+.snow-valley
+{
+    fill: #777B88;
+}
+.lee-canyon
+{
+    fill: #BED661;
+}
+
+/* Angeles Section */
+.buckhorn
+{
+    fill: #B76EB8;
+}
+.mt-baldy
+{
+    fill: #9C9F84;
+}
+.mountain-high
+{
+    fill: #996699;
+}
+.mt-waterman
+{
+    fill: teal;
+}
+.san-gabriel
+{
+    fill: #E86850;
+}
+
+/***************************************************/
+

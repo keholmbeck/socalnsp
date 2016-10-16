@@ -1,0 +1,14 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="par">
+    <a href="{{url_for('patrol_route', page='member_patrols')}}"> List here </a>
+</div>
+
+<div class="par">
+    <div >
+        <iframe src="{{url_for('patrol_map')}}" frameborder=0 width="100%" height="500px"/>
+    </div>
+</div>
+
+{% endblock %}

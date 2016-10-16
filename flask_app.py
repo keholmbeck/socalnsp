@@ -18,24 +18,27 @@ import cgitb; cgitb.enable()  # for troubleshooting
 from app import *
 
 '''#---------- MAIL STUFF ------------ #
-app.config.from_object(__name__)
 mail = Mail(app)
 
-import sys
-sys.path.append('../PA_repo/')
-from app_config import *
+#import sys
+#sys.path.append('../PA_repo/')
+#from app_config import *
+app.config.from_pyfile('../PA_repo/app_config.cfg')
+#app = config_app(app)
 
-config_app(app)
-mail.init_app(app)
+mail = Mail(app)
 
 from forms import *
-
 #-----------------------------------#'''
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
+    
+@app.route('/patrol_map')
+def patrol_map():
+    return render_template('patrol_map.html');
     
 @app.route('/<url_name>')
 def gen_route(url_name):
@@ -47,8 +50,8 @@ def gen_route(url_name):
         page = 'About'
     elif url_name == 'join':
         page = 'Join NSP'
-    elif url_name == 'member_patrols':
-        page = 'Member Patrols'
+    elif url_name == 'patrols':
+        page = 'Patrols'
     elif url_name == 'programs':
         page = 'Programs'
     elif url_name == 'bill_eslick_fund':
@@ -57,7 +60,7 @@ def gen_route(url_name):
         page = "Sponsors"
     else:
         file = 'error'
-    
+        
     return render_template(file+'.html', pageTitle=page)
     
 @app.route('/news')
@@ -85,11 +88,9 @@ def news():
 
     return render_template('news.html', pageTitle="Upcoming Events", other_news=other_news, title_news=title_news, rss_feed=str)
 
-
+'''
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return test
-    '''
     global emails
     form = ContactForm(csrf_enabled=False)
     nSelected = 1;
@@ -97,13 +98,17 @@ def contact():
     if request.method == 'GET':
         return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
     
+    #msg = Message('Hello', sender='keholmbeck@yahoo.com', recipients=['admin@socalnsp.org'])
+    #msg.body = "This is the email body"
+    #mail.send(msg)
+    #return "Sent"
+
     #   if request.method == 'POST':    
     if form.validate() == False:
         flash('All fields are required.')
         return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
         
     else:
-        return "Posted"
         selected  = request.form[ "emailSelect" ]
         selected  = int( selected )
         recipient = emails[selected][1]
@@ -114,16 +119,35 @@ def contact():
         From: %s (%s) \n\n 
         %s
         """ % (form.name.data, form.email.data, form.message.data)
+                
         mail.send(msg)
 
         return render_template('contact.html', success=True)
 #'''
 
+#---------- PATROLS ---------#
+@app.route('/patrols/<page>')
+def patrol_route(page):
+
+    pagename = page.lower()
+    file = page
+    page = 'Error'
+    
+    if pagename == 'member_patrols':
+        page = 'Member Patrols'
+    elif pagename == 'snowboard':
+        page = 'Snowboard Program'
+    else:
+        return render_template('error.html', pageTitle=page);
+        
+    return render_template('patrols/' + file + '.html', pageTitle=page);
+
+
 #---------- PROGRAMS ---------#
 @app.route('/programs/<progname>')
 def prog_route(progname):
 
-    proganame = progname.lower()
+    progname = progname.lower()
     file = progname
     page = 'Error'
     
@@ -156,4 +180,4 @@ def prog_route(progname):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True)

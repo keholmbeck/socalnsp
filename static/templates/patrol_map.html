@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+
+      
+      function initMap() {
+        locations = [
+            {lat: 34.2439,   lng: -116.9114,   name: 'Big Bear', pr: 'Jim Murphy', url: 'http://www.bigbearskipatrol.com'},
+            {lat: 34.223726, lng: -117.035701, name: 'Snow Valley', pr: 'Lisa Larres', url: 'http://www.snow-valley.com/mountain_patrol.html'},
+            {lat: 36.303728, lng: -115.679642, name: 'Lee Canyon', pr: 'Harry Weldon', url: 'http://www.skilasvegas.com/winter/index.html'},
+            {lat: 34.341899, lng: -117.919795, name: 'Buckhorn', pr: 'Keith McIver', url: 'http://www.orgsites.com/ca/buckhorn/'},
+            {lat: 34.236147, lng: -117.659275, name: 'Mt. Baldy', pr: 'Keith Church', url: 'http://www.mtbaldyskipatrol.org/'},
+            {lat: 34.376753, lng: -117.691413, name: 'Mountain High', pr: 'Scott Goodman', url: 'http://mountainhighskipatrol.com/'},
+            {lat: 34.349271, lng: -117.928768, name: 'Mt. Waterman', pr: 'James Pruett', url: 'http://www.mtwaterman.org/'},
+            {lat: 34.407421, lng: -117.977096, name: 'San Gabriel Backcountry', pr: 'Erik Siering', url: 'http://backcountrypatrol.com/'},
+            {lat: 35.711024, lng: -118.560187, name: 'Alta Sierra', pr: 'Kris Reichert', url: 'http://www.altasierra.com/'},
+            {lat: 34.813585, lng: -119.126378, name: 'Mt. Pinos Nordic', pr: 'Byron Taylor', url: 'http://www.nordicbase.org/'},
+            {lat: 37.630428, lng: -119.032541, name: 'Mammoth Nordic Basin', pr: 'Wayne Wong', url: 'http://www.mammothskipatrol.com/'},
+            
+        ];
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 36.052386, lng: -118.212373},
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: 'black'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: 'black'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            }]
+         });
+
+
+        var infowindow = new google.maps.InfoWindow({
+              maxWidth: 300
+        }) ;
+        var marker;
+        var contentString;
+        
+        for(var ii=0; ii<locations.length; ii++){
+            contentString = '<div id="content">'+
+                '<h2><a href="' + locations[ii].url + '" target="_blank">'+ 
+                locations[ii].name + '</a></h2><div>'+
+                '<p>Patrol Rep: ' + locations[ii].pr + '</p>' +
+                '</div></div>';
+
+            marker = new google.maps.Marker({
+              position: {lat: locations[ii].lat, lng: locations[ii].lng},
+              map: map,
+              title: locations[ii].name,
+              contentString: contentString
+            });
+            marker.addListener('click', function() {
+                infowindow.close(); // Close previously opened infowindow
+                infowindow.setContent( this.contentString );
+                infowindow.open(map, this);
+            });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsyF5OEcBrVU2SDixI5nEyrD3O31FaCk0&callback=initMap">
+    </script>
+  </body>
+</html>

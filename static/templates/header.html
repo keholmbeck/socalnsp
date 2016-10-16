@@ -14,6 +14,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/font-awesome.min.css') }}">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/simple-sidebar.css') }}">
@@ -104,8 +105,8 @@
                     </a>
                 </li>
                 
-                <li {% if request.path=="/member_patrols" %}class="activeLink"{% endif %}>
-                    <a href="{{url_for('gen_route', url_name='member_patrols')}}">
+                <li {% if request.path=="/patrols" %}class="activeLink"{% endif %}>
+                    <a href="{{url_for('gen_route', url_name='patrols')}}">
                         <table>
                             <td><span class="glyphicon glyphicon-globe"></span></td>
                             <td> Patrols <td>
