@@ -11,7 +11,7 @@ from wtforms import TextField, TextAreaField, SubmitField, validators
 import feedparser
 
 from flask.ext.mail import Message, Mail
- 
+
 import cgi
 import cgitb; cgitb.enable()  # for troubleshooting
 
@@ -35,20 +35,22 @@ from forms import *
 @app.route('/home')
 def home():
     return render_template('home.html', pageTitle="Home")
-    
+
 @app.route('/patrol_map')
 def patrol_map():
     return render_template('patrol_map.html');
-    
+
 @app.route('/<url_name>')
 def gen_route(url_name):
     url_name = url_name.lower()
     file = url_name
     page = 'Error'
-    
+
     if url_name == 'about':
         page = 'About'
     elif url_name == 'join':
+        page = 'Join NSP'
+    elif url_name == 'join.html':
         page = 'Join NSP'
     elif url_name == 'patrols':
         page = 'Patrols'
@@ -60,9 +62,9 @@ def gen_route(url_name):
         page = "Sponsors"
     else:
         file = 'error'
-        
+
     return render_template(file+'.html', pageTitle=page)
-    
+
 @app.route('/news')
 def news():
     d = feedparser.parse('http://socalnsp.blogspot.com/feeds/posts/default?alt=rss')
@@ -94,32 +96,32 @@ def contact():
     global emails
     form = ContactForm(csrf_enabled=False)
     nSelected = 1;
-    
+
     if request.method == 'GET':
         return render_template('contact.html', pageTitle="Contact Us", form=form, emails=emails, nth_selected=nSelected)
-    
+
     #msg = Message('Hello', sender='keholmbeck@yahoo.com', recipients=['admin@socalnsp.org'])
     #msg.body = "This is the email body"
     #mail.send(msg)
     #return "Sent"
 
-    #   if request.method == 'POST':    
+    #   if request.method == 'POST':
     if form.validate() == False:
         flash('All fields are required.')
         return render_template('contact.html', form=form, emails=emails, nth_selected=nSelected)
-        
+
     else:
         selected  = request.form[ "emailSelect" ]
         selected  = int( selected )
         recipient = emails[selected][1]
-        
+
         msg = Message(form.subject.data, sender=form.email.data, recipients=[recipient])
         msg.body = """
-        (Email sent through socalnsp.org) \n 
-        From: %s (%s) \n\n 
+        (Email sent through socalnsp.org) \n
+        From: %s (%s) \n\n
         %s
         """ % (form.name.data, form.email.data, form.message.data)
-                
+
         mail.send(msg)
 
         return render_template('contact.html', success=True)
@@ -132,14 +134,14 @@ def patrol_route(page):
     pagename = page.lower()
     file = page
     page = 'Error'
-    
+
     if pagename == 'member_patrols':
         page = 'Member Patrols'
     elif pagename == 'snowboard':
         page = 'Snowboard Program'
     else:
         return render_template('error.html', pageTitle=page);
-        
+
     return render_template('patrols/' + file + '.html', pageTitle=page);
 
 
@@ -150,7 +152,7 @@ def prog_route(progname):
     progname = progname.lower()
     file = progname
     page = 'Error'
-    
+
     if progname == 'alumni':
         page = 'Alumni Program'
     elif progname == 'avalanche':
@@ -175,7 +177,7 @@ def prog_route(progname):
         page = 'Snowboard Program'
     else:
         return render_template('error.html', pageTitle=page);
-        
+
     return render_template('programs/' + file + '.html', pageTitle=page);
 
 

@@ -53,7 +53,7 @@
         <!-- Sidebar -->
         <div class="navbar" id="sidebar-wrapper">
             <ul class="sidebar-nav">
-            
+
                 <li class="sidebar-brand">
                     <a href="{{url_for('home')}}">
                         <img src="{{ url_for('static', filename='images/Logo_WhiteCross_WhiteBorder2.png') }}">
@@ -61,7 +61,7 @@
                         <h2> Southern California Region </h2>
                     </a>
                 </li>
-                
+
                 <li {% if request.path=="/about" %}class="activeLink"{% endif %}>
                     <a href="{{url_for('gen_route', url_name='about')}}">
                         <table>
@@ -70,7 +70,7 @@
                         </table>
                     </a>
                 </li>
-                
+
                 <li {% if request.path=="/join" %}class="activeLink"{% endif %}>
                     <a href="{{url_for('gen_route', url_name='join')}}">
                         <table>
@@ -86,7 +86,7 @@
                         <td> Calendar </td>
                     </table>
                 </a></li>
-                
+
                 <li {% if request.path=="/news" %}class="activeLink"{% endif %}>
                     <a href="/news">
                         <table>
@@ -95,7 +95,7 @@
                         </table>
                     </a>
                 </li>
-                
+
                 <li {% if request.path=="/programs" %}class="activeLink"{% endif %}>
                     <a href="{{url_for('gen_route', url_name='programs')}}">
                         <table>
@@ -104,7 +104,7 @@
                         </table>
                     </a>
                 </li>
-                
+
                 <li {% if request.path=="/patrols" %}class="activeLink"{% endif %}>
                     <a href="{{url_for('gen_route', url_name='patrols')}}">
                         <table>
@@ -113,14 +113,14 @@
                         </table>
                     </a>
                 </li>
-                
+
                 <li><a href="mailto:admin@socalnsp.org" ui-sref-active>
                     <table>
                         <td><span class="glyphicon glyphicon-phone-alt"></span></td>
                         <td> Contact Us </td>
                     </table>
                 </a></li>
-                
+
                 <!--li>
                     <a href="https://www.facebook.com/groups/113832905318788/">
                        <img src="static/images/FB_logo_57.png">
@@ -140,9 +140,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Calendar</h4>
+                        <h4 class="modal-title">Calendar
+                            <a href="https://calendar.google.com/calendar/ical/socalnspweb%40gmail.com/public/basic.ics">
+                                <button type="button" class="btn btn-primary">Subscribe</button>
+                            </a>
+                        </h4>
                     </div>
-                    
+
                     <div class="modal-body">
                         <iframe src="https://calendar.google.com/calendar/embed?src=socalnspweb%40gmail.com&ctz=America/Los_Angeles"
                             style="border:0" frameborder="0" scrolling="no"
@@ -164,7 +168,7 @@
                 </button>
             </div>
         </nav>
-        
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
@@ -182,13 +186,13 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            
+
         </div>
         <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-    
+
 
     <!-- Menu Toggle Script -->
     <script>
@@ -196,8 +200,8 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        
-        // Trigger click when clicking outside of menu for small page 
+
+        // Trigger click when clicking outside of menu for small page
         $("#page-content-wrapper").click(function(e) {
             //e.preventDefault();
 
