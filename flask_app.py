@@ -163,11 +163,11 @@ def prog_route(progname):
         page = 'Certified Program'
     elif progname == 'instructor_development':
         page = 'Instructor Development'
-    elif progname == 'MTR':
+    elif progname == 'mtr':
         page = 'Mountain Travel & Rescue'
-    elif progname == 'OEC':
+    elif progname == 'oec':
         page = 'Outdoor Emergency Care'
-    elif progname == 'SAR':
+    elif progname == 'sar':
         page = 'Search & Rescue'
     elif progname == 'senior':
         page = 'Senior Program'
